@@ -5,8 +5,8 @@ from django.contrib.postgres import fields
 class Document(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    document_title = models.TextField()
-    document_author = models.TextField()
+    title = models.TextField()
+    author = models.TextField()
     class Meta:
         db_table = 'documents'
 
