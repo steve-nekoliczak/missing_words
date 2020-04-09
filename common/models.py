@@ -14,11 +14,12 @@ class Document(models.Model):
 class Exercise(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    document_id = models.ForeignKey('Document', models.CASCADE)
+    document = models.ForeignKey('Document', models.CASCADE)
     paragraph_index = models.IntegerField()
     paragraph_start = models.BooleanField()
     sentence_index = models.IntegerField()
-    sentence_text = fields.JSONField()
+    sentence_text = models.TextField()
+    topic_words = fields.JSONField()
     class Meta:
         db_table = 'exercises'
 
@@ -36,8 +37,8 @@ class User(models.Model):
 class ExerciseAttempt(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    exercise_id = models.ForeignKey('Exercise', models.CASCADE)
-    user_id = models.ForeignKey('User', models.CASCADE)
+    exercise = models.ForeignKey('Exercise', models.CASCADE)
+    user = models.ForeignKey('User', models.CASCADE)
     topic_word_index = models.IntegerField()
     exercise_type = models.TextField()
     guess = models.TextField()
