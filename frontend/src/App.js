@@ -1,26 +1,73 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewCompleted: false,
+      activeItem: {
+        title: "",
+        description: "",
+        completed: false
+      },
+      documentList: []
+    };
+  }
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
+  refreshList = () => {
+    axios
+      .get("/documents/")
+      .then(res => this.setState({ documentList: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  displayCompleted = status => {
+    if (status) {
+      return this.setState({ viewCompleted: true });
+    }
+    return this.setState({ viewCompleted: false });
+  };
+
+  renderItems = () => {
+    const { viewCompleted } = this.state;
+    /*
+    const newItems = this.state.documentList.filter(
+      item => item.completed === viewCompleted
+    );
+    */
+    const items = this.state.documentList;
+    return items.map(item => (
+      <li
+        key={item.id}
+      >
+        <span>
+          {item.author}
+        </span>
+      </li>
+    ));
+  };
+
+  render() {
+    return (
+      <main>
+        <h1>Todo app</h1>
+        <div>
+          <div>
+            <div>
+              <ul>
+                {this.renderItems()}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
 }
-
 export default App;
