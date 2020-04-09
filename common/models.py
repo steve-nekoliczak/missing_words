@@ -23,11 +23,21 @@ class Exercise(models.Model):
         db_table = 'exercises'
 
 
+class User(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    name = models.TextField()
+    email = fields.CIEmailField()
+    password = models.TextField()
+    class Meta:
+        db_table = 'users'
+
+
 class ExerciseAttempt(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     exercise_id = models.ForeignKey('Exercise', models.CASCADE)
-    # user_id = models.ForeignKey('User', models.CASCADE)
+    user_id = models.ForeignKey('User', models.CASCADE)
     topic_word_index = models.IntegerField()
     exercise_type = models.TextField()
     guess = models.TextField()
