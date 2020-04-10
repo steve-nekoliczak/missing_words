@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Header from "./partials/Header";
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +57,7 @@ class HomePage extends Component {
   render() {
     return (
       <main>
-        <h1>Todo app</h1>
+        <Header />
         <ul>
           {this.renderItems()}
         </ul>
