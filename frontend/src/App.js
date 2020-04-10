@@ -10,7 +10,6 @@ import UploadPage from './pages/UploadPage';
 export default function App() {
   return (
     <div>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/stats" component={StatsPage}></Route>
