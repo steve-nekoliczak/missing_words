@@ -27,12 +27,12 @@ class Header extends Component {
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary">
+              <Link to="/signup" class="button is-primary">
                 <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
+              </Link>
+              <Link to="/login" class="button is-light">
                 Log in
-              </a>
+              </Link>
             </div>
           </div>
         </div>
