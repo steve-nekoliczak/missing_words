@@ -1,73 +1,19 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      viewCompleted: false,
-      activeItem: {
-        title: "",
-        description: "",
-        completed: false
-      },
-      documentList: []
-    };
-  }
+import HomePage from './pages/HomePage';
+import StatsPage from './pages/StatsPage';
+import HowToPage from './pages/HowToPage';
+import UploadPage from './pages/UploadPage';
 
-  componentDidMount() {
-    this.refreshList();
-  }
 
-  refreshList = () => {
-    axios
-      .get("/documents/")
-      .then(res => this.setState({ documentList: res.data }))
-      .catch(err => console.log(err));
-  };
-
-  displayCompleted = status => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-    return this.setState({ viewCompleted: false });
-  };
-
-  renderItems = () => {
-    const { viewCompleted } = this.state;
-    /*
-    const newItems = this.state.documentList.filter(
-      item => item.completed === viewCompleted
-    );
-    */
-    const items = this.state.documentList;
-    return items.map(item => (
-      <li
-        key={item.id}
-      >
-        <span>
-          {item.author}
-        </span>
-      </li>
-    ));
-  };
-
-  render() {
-    return (
-      <main>
-        <h1>Todo app</h1>
-        <div>
-          <div>
-            <div>
-              <ul>
-                {this.renderItems()}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
+export default function App() {
+  return (
+    <Switch>
+      <Route exact path="/" component={HomePage}></Route>
+      <Route path="/stats" component={StatsPage}></Route>
+      <Route path="/how-to" component={HowToPage}></Route>
+      <Route path="/upload" component={UploadPage}></Route>
+    </Switch>
+  );
 }
-export default App;
