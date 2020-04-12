@@ -1,6 +1,19 @@
 import spacy
-from spacy.lang.de.tag_map import TAG_MAP as tag_map
 
-nlp = spacy.load('de_core_news_sm')
+from .lang_configs import de_config
 
-# TODO add custom special cases for article contractions like zum and zur
+
+# TODO be able to set language somewhere more convenient
+lang = 'de'
+
+models = {
+    'de': de_config.model
+}
+nlp = spacy.load(models[lang])
+
+special_cases = {
+    'de': de_config.special_cases
+}
+if lang in special_cases:
+    for word, case in special_cases[lang].items():
+        nlp.tokenizer.add_special_case(word, case)
