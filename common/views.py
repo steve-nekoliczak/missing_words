@@ -4,13 +4,13 @@ from rest_framework import viewsets
 
 from .serializers import (
     DocumentSerializer,
-    ExerciseSerializer,
+    ExerciseSentenceSerializer,
     UserSerializer,
     ExerciseAttemptSerializer
 )
 from .models import(
     Document,
-    Exercise,
+    ExerciseSentence,
     User,
     ExerciseAttempt
 )
@@ -21,9 +21,9 @@ class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
 
 
-class ExerciseViewSet(viewsets.ModelViewSet):
-    serializer_class = ExerciseSerializer
-    queryset = Exercise.objects.all()
+class ExerciseSentenceViewSet(viewsets.ModelViewSet):
+    serializer_class = ExerciseSentenceSerializer
+    queryset = ExerciseSentence.objects.all()
 
 
 class UserViewSet(viewsets.ModelViewSet):

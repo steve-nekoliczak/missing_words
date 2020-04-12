@@ -8,7 +8,7 @@ from nlp_json.views import process_sentence
 
 router = routers.DefaultRouter()
 router.register(r'documents', common_views.DocumentViewSet)
-router.register(r'exercises', common_views.ExerciseViewSet)
+router.register(r'exercise_sentences', common_views.ExerciseSentenceViewSet)
 router.register(r'users', common_views.UserViewSet)
 router.register(r'exercise_attempts', common_views.ExerciseAttemptViewSet)
 
