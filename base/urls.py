@@ -1,31 +1,19 @@
-"""missing_words URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from common import views
+
+from common import views as common_views
+from nlp_json.views import process_sentence
 
 
 router = routers.DefaultRouter()
-router.register(r'documents', views.DocumentViewSet)
-router.register(r'exercises', views.ExerciseViewSet)
-router.register(r'users', views.UserViewSet)
-router.register(r'exercise_attempts', views.ExerciseAttemptViewSet)
+router.register(r'documents', common_views.DocumentViewSet)
+router.register(r'exercises', common_views.ExerciseViewSet)
+router.register(r'users', common_views.UserViewSet)
+router.register(r'exercise_attempts', common_views.ExerciseAttemptViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path(r'process_sentence/<str:sentence>/', process_sentence),
     path('admin/', admin.site.urls),
 ]
