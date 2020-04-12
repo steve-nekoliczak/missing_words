@@ -24,12 +24,12 @@ def generate_tokens(sentences_str):
 
         for token in sentence:
             clean_token = {}
-            clean_token ['text']    = token.text
-            clean_token ['norm']    = token.norm_
-            clean_token ['lemma']   = token.lemma_
-            clean_token ['pos']     = token.pos_
-            clean_token ['index']   = token.i
-            clean_token ['feats']   = TAG_MAP[token.tag_]
+            clean_token['text']     = token.text
+            clean_token['norm']     = token.norm_
+            clean_token['lemma']    = token.lemma_
+            clean_token['pos']      = token.pos_
+            clean_token['index']    = token.i
+            clean_token['feats']    = TAG_MAP[token.tag_]
 
             # TODO hack to remove POS/74 key from clean_token['feats'] dict
             clean_token['feats'].pop(74, None)
