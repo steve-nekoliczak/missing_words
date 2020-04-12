@@ -11,7 +11,7 @@ class Document(models.Model):
         db_table = 'documents'
 
 
-class Exercise(models.Model):
+class ExerciseSentence(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     document = models.ForeignKey('Document', models.CASCADE)
@@ -21,7 +21,7 @@ class Exercise(models.Model):
     sentence_text = models.TextField()
     topic_words = fields.JSONField()
     class Meta:
-        db_table = 'exercises'
+        db_table = 'exercise_sentences'
 
 
 class User(models.Model):
@@ -37,7 +37,7 @@ class User(models.Model):
 class ExerciseAttempt(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    exercise = models.ForeignKey('Exercise', models.CASCADE)
+    exercise = models.ForeignKey('ExerciseSentence', models.CASCADE)
     user = models.ForeignKey('User', models.CASCADE)
     topic_word_index = models.IntegerField()
     exercise_type = models.TextField()
