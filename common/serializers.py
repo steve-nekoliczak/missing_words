@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers, permissions
+
 from .models.document import Document
 from .models.exercise_sentence import ExerciseSentence
 from .models.exercise_attempt import ExerciseAttempt
-from .models.user import User
 
 
 class DocumentSerializer(serializers.ModelSerializer):
@@ -23,7 +24,7 @@ class ExerciseSentenceSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'name', 'email', 'password')
+        fields = ('id', 'first_name', 'last_name', 'email', 'password')
         permission_classes = [permissions.IsAuthenticated]
 
 
