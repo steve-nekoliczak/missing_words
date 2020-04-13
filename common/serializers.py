@@ -1,5 +1,8 @@
 from rest_framework import serializers, permissions
-from .models import Document, ExerciseSentence, User, ExerciseAttempt
+from .models.document import Document
+from .models.exercise_sentence import ExerciseSentence
+from .models.exercise_attempt import ExerciseAttempt
+from .models.user import User
 
 
 class DocumentSerializer(serializers.ModelSerializer):
