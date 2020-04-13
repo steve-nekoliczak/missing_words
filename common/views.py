@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from rest_framework import viewsets
 
 from .serializers import (
@@ -8,12 +6,10 @@ from .serializers import (
     UserSerializer,
     ExerciseAttemptSerializer
 )
-from .models import(
-    Document,
-    ExerciseSentence,
-    User,
-    ExerciseAttempt
-)
+from .models.document import Document
+from .models.exercise_sentence import ExerciseSentence
+from .models.exercise_attempt import ExerciseAttempt
+from .models.user import User
 
 
 class DocumentViewSet(viewsets.ModelViewSet):
