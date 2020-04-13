@@ -2,15 +2,18 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from common import views as common_views
+from common.views.document_view import DocumentViewSet
+from common.views.exercise_sentence_view import ExerciseSentenceViewSet
+from common.views.user_view import UserViewSet
+from common.views.exercise_attempt_view import ExerciseAttemptViewSet
 from nlp_json.views import process_sentence
 
 
 router = routers.DefaultRouter()
-router.register(r'documents', common_views.DocumentViewSet)
-router.register(r'exercise_sentences', common_views.ExerciseSentenceViewSet)
-router.register(r'users', common_views.UserViewSet)
-router.register(r'exercise_attempts', common_views.ExerciseAttemptViewSet)
+router.register(r'documents', DocumentViewSet)
+router.register(r'exercise_sentences', ExerciseSentenceViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'exercise_attempts', ExerciseAttemptViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
