@@ -13,7 +13,6 @@ from nlp_json import nlp
 #   ],
 # ]
 def generate_tokens(sentences_str):
-    # return nlp(sentences_str)
     sentences = nlp(sentences_str).sentences
 
     for sentence in sentences:
