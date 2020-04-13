@@ -1,4 +1,4 @@
-import spacy
+import stanza
 
 from .lang_configs import de_config
 
@@ -6,14 +6,7 @@ from .lang_configs import de_config
 # TODO be able to set language somewhere more convenient
 lang = 'de'
 
-models = {
-    'de': de_config.model
+processors = {
+    'de': de_config.processors
 }
-nlp = spacy.load(models[lang])
-
-special_cases = {
-    'de': de_config.special_cases
-}
-if lang in special_cases:
-    for word, case in special_cases[lang].items():
-        nlp.tokenizer.add_special_case(word, case)
+nlp = stanza.Pipeline(lang=lang, processors=processors[lang])
