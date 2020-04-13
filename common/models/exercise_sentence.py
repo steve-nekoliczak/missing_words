@@ -13,4 +13,3 @@ class ExerciseSentence(models.Model):
     topic_words = fields.JSONField()
     class Meta:
         db_table = 'exercise_sentences'
-

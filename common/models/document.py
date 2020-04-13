@@ -8,4 +8,3 @@ class Document(models.Model):
     author = models.TextField()
     class Meta:
         db_table = 'documents'
-
