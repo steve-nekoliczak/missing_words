@@ -6,10 +6,11 @@ from .processors import de_processor
 
 
 @api_view(['GET'])
-def process_sentence(request, sentence):
+def process_sentences(request):
+    sentences = request.GET.get('sentences')
     tokens = ''
     if lang == 'de':
-        tokens = de_processor.generate_tokens(sentence)
+        tokens = de_processor.generate_tokens(sentences)
     else:
         pass
         # return HttpResponse(404 or something like that)
